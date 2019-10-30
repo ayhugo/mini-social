@@ -8,7 +8,7 @@ const userRoutes = require("./routes/user");
 
 const app = express();
 
-mongoose.connect('mongodb+srv://hugo:8pEMNNTVZ7QPOG2t@cluster0-amkrt.mongodb.net/node-angular?retryWrites=true&w=majority').then(() => {
+mongoose.connect('mongodb+srv://hugo:8pEMNNTVZ7QPOG2t@cluster0-amkrt.mongodb.net/node-angular').then(() => {
   console.log('Connect to database!');
 }).catch(() => {
   console.log('connection failed');
@@ -17,7 +17,7 @@ mongoose.connect('mongodb+srv://hugo:8pEMNNTVZ7QPOG2t@cluster0-amkrt.mongodb.net
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-//Any request targeting /images will be allow to access it
+//Any request targeting /images will be allowed to access it
 app.use('/images', express.static(path.join("backend/images")));
 
 app.use((req, res, next) => {
