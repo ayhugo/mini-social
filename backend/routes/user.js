@@ -31,8 +31,8 @@ router.post('/login', (req, res, next) => {
   let fetchedUser;
   User.findOne({email: req.body.email}).then(user =>{
     if (!user) {
-      return res.status(401).json({
-        message: "Auth failed"
+      return res.status(404).json({
+        message: "Auth Failed"
       });
     }
     fetchedUser = user;
@@ -41,7 +41,7 @@ router.post('/login', (req, res, next) => {
   .then(result => {
     if (!result){
       return res.status(401).json({
-        message: "Auth failed"
+        message: "Auth Failed"
       });
     }
     const token = jwt.sign(
@@ -49,9 +49,9 @@ router.post('/login', (req, res, next) => {
       'secret_this_should_be_longer',
       {expiresIn: '1h'}
     );
-    res,status(200).json({
+    res.status(200).json({
       token: token
-    })
+    });
   })
   .catch(err => {
     return res.status(401).json({
